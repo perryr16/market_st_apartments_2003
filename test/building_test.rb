@@ -75,7 +75,7 @@ class BuildingTest < Minitest::Test
     building.add_unit(unit1)
     building.add_unit(unit2)
     building.add_unit(unit3)
-    assert_equal nil, building.renter_with_highest_rent
+    assert_nil building.renter_with_highest_rent
     unit2.add_renter(renter1)
     assert_equal renter1, building.renter_with_highest_rent
     renter2 = Renter.new("Jessie")
@@ -139,6 +139,8 @@ class BuildingTest < Minitest::Test
     building.add_unit(unit2)
     building.add_unit(unit3)
     unit2.add_renter(renter1)
+    expected = {renter1 => {bathrooms: 2, bedrooms: 2}}
+    assert_equal expected, building.rooms_by_renter
     renter2 = Renter.new("Jessie")
     unit1.add_renter(renter2)
     expected = {renter2 => {bathrooms: 1, bedrooms: 1},

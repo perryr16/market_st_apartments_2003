@@ -19,16 +19,7 @@ class RenterTest < Minitest::Test
 
 end
 
-# require './lib/renter'
-# # => true
-#
-# require './lib/apartment'
-# # => true
-#
-# # => #<Renter:0x00007a15c93af80...>
-#
-# renter1.name
-# # => "Jessie"
+
 #
 # unit1 = Apartment.new({number: "A1", monthly_rent: 1200, bathrooms: 1, bedrooms: 1})
 # # => #<Apartment:0x00007fb3ecaae7c0...>
