@@ -28,12 +28,15 @@ class BuildingTest < Minitest::Test
     unit2 = Apartment.new({number: "B2", monthly_rent: 999, bathrooms: 2, bedrooms: 2})
     building.add_unit(unit1)
     building.add_unit(unit2)
+
     assert_equal [], building.renters
     renter1 = Renter.new("Aurora")
     unit1.add_renter(renter1)
+
     assert_equal ["Aurora"], building.renters
     renter2 = Renter.new("Tim")
     unit2.add_renter(renter2)
+
     assert_equal ["Aurora", "Tim"], building.renters
   end
 
@@ -52,7 +55,6 @@ class BuildingTest < Minitest::Test
     unit1 = Apartment.new({number: "A1", monthly_rent: 1200, bathrooms: 1, bedrooms: 1})
     unit2 = Apartment.new({number: "B2", monthly_rent: 999, bathrooms: 1, bedrooms: 2})
     unit3 = Apartment.new({number: "C3", monthly_rent: 1150, bathrooms: 2, bedrooms: 2})
-    unit4 = Apartment.new({number: "D4", monthly_rent: 1500, bathrooms: 2, bedrooms: 3})
     renter1 = Renter.new("Spencer")
     building.add_unit(unit1)
     building.add_unit(unit2)
@@ -60,8 +62,10 @@ class BuildingTest < Minitest::Test
 
     assert_equal [], building.rented_units
     unit2.add_renter(renter1)
+
     assert_equal [unit2], building.rented_units
     unit3.add_renter(renter1)
+
     assert_equal [unit2, unit3], building.rented_units
   end
 
@@ -70,19 +74,21 @@ class BuildingTest < Minitest::Test
     unit1 = Apartment.new({number: "A1", monthly_rent: 1200, bathrooms: 1, bedrooms: 1})
     unit2 = Apartment.new({number: "B2", monthly_rent: 999, bathrooms: 1, bedrooms: 2})
     unit3 = Apartment.new({number: "C3", monthly_rent: 1150, bathrooms: 2, bedrooms: 2})
-    unit4 = Apartment.new({number: "D4", monthly_rent: 1500, bathrooms: 2, bedrooms: 3})
     renter1 = Renter.new("Spencer")
     building.add_unit(unit1)
     building.add_unit(unit2)
     building.add_unit(unit3)
     assert_nil building.renter_with_highest_rent
     unit2.add_renter(renter1)
+
     assert_equal renter1, building.renter_with_highest_rent
     renter2 = Renter.new("Jessie")
     unit1.add_renter(renter2)
+
     assert_equal renter2, building.renter_with_highest_rent
     renter3 = Renter.new("Max")
     unit3.add_renter(renter3)
+
     assert_equal renter2, building.renter_with_highest_rent
   end
 
@@ -92,7 +98,6 @@ class BuildingTest < Minitest::Test
     unit2 = Apartment.new({number: "B2", monthly_rent: 999, bathrooms: 1, bedrooms: 2})
     unit3 = Apartment.new({number: "C3", monthly_rent: 1150, bathrooms: 2, bedrooms: 2})
     unit4 = Apartment.new({number: "D4", monthly_rent: 1500, bathrooms: 2, bedrooms: 3})
-    renter1 = Renter.new("Spencer")
     building.add_unit(unit1)
     building.add_unit(unit2)
     building.add_unit(unit3)
@@ -150,8 +155,3 @@ class BuildingTest < Minitest::Test
   end
 
 end
-
-
-# building.rooms_by_renter
-# #=> {<Renter:0x00007fb333af5a80...> => {bathrooms: 1, bedrooms: 1},
-# #    #<Renter:0x00007fb333d0d7f0...> => {bathrooms: 2, bedrooms: 2}}

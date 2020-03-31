@@ -3,7 +3,6 @@ class Building
   attr_reader :units, :renters
   def initialize
     @units = []
-    # @renters = []
   end
 
   def add_unit(unit)
@@ -40,15 +39,15 @@ class Building
   end
 
   def units_by_number_of_bedrooms
-    units_by_number_of_brooms = {}
+    units_by_number_of_bedrooms = {}
     @units.each do |unit|
-      if units_by_number_of_brooms[unit.bedrooms] == nil
-        units_by_number_of_brooms[unit.bedrooms] = [unit.number]
+      if units_by_number_of_bedrooms[unit.bedrooms] == nil
+        units_by_number_of_bedrooms[unit.bedrooms] = [unit.number]
       else
-        units_by_number_of_brooms[unit.bedrooms] << unit.number
+        units_by_number_of_bedrooms[unit.bedrooms] << unit.number
       end
     end
-    units_by_number_of_brooms
+    units_by_number_of_bedrooms
   end
 
   def annual_breakdown
