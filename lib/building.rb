@@ -37,7 +37,18 @@ class Building
       @renter_with_highest_rent = rented_units.max_by { |unit| unit.monthly_rent}
       @renter_with_highest_rent = @renter_with_highest_rent.renter
     end
+  end
 
+  def units_by_number_of_bedrooms
+    units_by_number_of_brooms = {}
+    @units.each do |unit|
+      if units_by_number_of_brooms[unit.bedrooms] == nil
+        units_by_number_of_brooms[unit.bedrooms] = [unit.number]
+      else
+        units_by_number_of_brooms[unit.bedrooms] << unit.number
+      end
+    end
+    units_by_number_of_brooms
   end
 
 end
