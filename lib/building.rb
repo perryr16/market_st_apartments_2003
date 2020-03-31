@@ -20,6 +20,6 @@ class Building
 
   def average_rent
     sum = @units.sum { |unit| unit.monthly_rent}
-    average_rent = (sum.to_f / units.length.to_f).round(1)
+    (sum.to_f / units.length.to_f).round(1)
   end
 end
