@@ -30,4 +30,14 @@ class Building
     end
     @rented_units
   end
+
+  def renter_with_highest_rent
+    @renter_with_highest_rent = nil
+    if rented_units != []
+      @renter_with_highest_rent = rented_units.max_by { |unit| unit.monthly_rent}
+      @renter_with_highest_rent = @renter_with_highest_rent.renter
+    end
+
+  end
+
 end
