@@ -22,4 +22,12 @@ class Building
     sum = @units.sum { |unit| unit.monthly_rent}
     (sum.to_f / units.length.to_f).round(1)
   end
+
+  def rented_units
+    @rented_units = []
+    @units.each do |unit|
+      @rented_units << unit if unit.renter != nil
+    end
+    @rented_units
+  end
 end
