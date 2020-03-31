@@ -108,4 +108,48 @@ class BuildingTest < Minitest::Test
 
   end
 
+  def test_it_returns_anual_breakdown
+    building = Building.new
+    unit1 = Apartment.new({number: "A1", monthly_rent: 1200, bathrooms: 1, bedrooms: 1})
+    unit2 = Apartment.new({number: "B2", monthly_rent: 999, bathrooms: 2, bedrooms: 2})
+    unit3 = Apartment.new({number: "C3", monthly_rent: 1150, bathrooms: 2, bedrooms: 2})
+    renter1 = Renter.new("Spencer")
+    building.add_unit(unit1)
+    building.add_unit(unit2)
+    building.add_unit(unit3)
+    unit2.add_renter(renter1)
+    expected1 = {"Spencer" => 11988}
+    assert_equal expected1, building.annual_breakdown
+
+    renter2 = Renter.new("Jessie")
+    unit1.add_renter(renter2)
+    building.annual_breakdown
+    expected2 = {"Jessie" => 14400, "Spencer" => 11988}
+    assert_equal expected2, building.annual_breakdown
+
+  end
+
+  def test_it_returns_rooms_by_renter
+    building = Building.new
+    unit1 = Apartment.new({number: "A1", monthly_rent: 1200, bathrooms: 1, bedrooms: 1})
+    unit2 = Apartment.new({number: "B2", monthly_rent: 999, bathrooms: 2, bedrooms: 2})
+    unit3 = Apartment.new({number: "C3", monthly_rent: 1150, bathrooms: 2, bedrooms: 2})
+    renter1 = Renter.new("Spencer")
+    building.add_unit(unit1)
+    building.add_unit(unit2)
+    building.add_unit(unit3)
+    unit2.add_renter(renter1)
+    renter2 = Renter.new("Jessie")
+    unit1.add_renter(renter2)
+    expected = {renter2 => {bathrooms: 1, bedrooms: 1},
+                renter1 => {bathrooms: 2, bedrooms: 2}}
+
+    assert_equal expected, building.rooms_by_renter
+  end
+
 end
+
+
+# building.rooms_by_renter
+# #=> {<Renter:0x00007fb333af5a80...> => {bathrooms: 1, bedrooms: 1},
+# #    #<Renter:0x00007fb333d0d7f0...> => {bathrooms: 2, bedrooms: 2}}

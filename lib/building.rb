@@ -51,4 +51,20 @@ class Building
     units_by_number_of_brooms
   end
 
+  def annual_breakdown
+    anual_breakdown = {}
+    rented_units.each do |unit|
+      anual_breakdown[unit.renter.name] = unit.monthly_rent * 12
+    end
+    anual_breakdown
+  end
+
+  def rooms_by_renter
+    rooms_by_renter = {}
+    rented_units.each do |unit|
+      rooms_by_renter[unit.renter] = {bathrooms: unit.bathrooms, bedrooms: unit.bedrooms}
+    end
+    rooms_by_renter
+  end
+
 end
